@@ -1,3 +1,4 @@
+"""Stand-ins for the real repositories, to use in tests. This is the finished file."""
 from app.db.models import Category
 
 
@@ -17,14 +18,15 @@ class FakeProductRepository:
             self.products[product.id] = product
 
     async def get_by_id(self, product_id):
-        # TODO 3: return the product that has this id, or None when there is no such product.
-        ...
+        # dict.get gives None when the key is missing (a plain self.products[product_id] would raise KeyError).
+        return self.products.get(product_id)
 
     async def search(self, query):
-        # TODO 4: return all the products in a list, sorted by their ids. (The query is ignored.)
-        ...
+        # The query is ignored. sorted() builds a NEW list, so the caller cannot change the fake by changing the list.
+        return sorted(self.products.values(), key=lambda p: p.id)
 
     async def add(self, product):
-        # TODO 5: give the product the next id: the biggest id in self.products plus 1 (the first product gets 1).
-        #         Keep the product in self.products, and return it.
-        ...
+        # The biggest id plus 1. default=0 makes an empty fake give the id 1.
+        product.id = max(self.products, default=0) + 1
+        self.products[product.id] = product
+        return product

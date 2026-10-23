@@ -1,6 +1,6 @@
-> **Where the files are:** the starter files are in the `base/` folder. Every path below (such as `app/fakes.py` and `try_it.py`) is inside `base/`. Open a terminal in `base/` to run the commands.
-
 # A Fake Repository at ShopNest
+
+> **Where the files are:** this branch holds the finished solution in the `solution/` folder: the finished code, and the tests in `solution/tests/`. Every path below (such as `app/`, `tests/` and `try_it.py`) is inside `solution/`. Open a terminal in `solution/` to run the commands. To run the tests, type `python -m unittest -v` (or `pytest`) there. The starter files with the TODO notes are on the `main` branch, in `base/`.
 
 ## Problem Statement
 In class we made our product code **easy to test** in two ways. First, we pulled the shop rule (`low_stock`) and the dictionary building out of the service into a small **pure function**, `to_dict`: it needs no database and no server, so a test can call it in one line. Second, `ProductService` does not create its repository: it **receives** one, so a test can hand it a **fake repository**, a small class with the same methods that keeps a few products in a dictionary in memory. Now you finish both pieces. You need about 7 lines of code, in 2 small tasks.
